@@ -1,0 +1,6 @@
+venv
+*.sh
+s
+report.html
+reports
+.idea
