@@ -2,7 +2,7 @@ import os
 from bs4 import BeautifulSoup
 
 
-# Splitting the list as usually the server have only 5 columns with data in them
+# Splitting the list as usually the servers have only 5 columns with data in them
 def split(list_a, chunk):
     # Some lists contain over 20 items, and we only need 5 of those for each mountpoint
     # In our case chunk is the actual number of columns that we see in the report and want to set in our list.
@@ -39,13 +39,13 @@ for report in os.listdir("reports"):
         if pingable != 'True':
             print(f"In report {report} Server: {cells[0].text} has pingable status of: {cells[2].text}")
 
-    # In the report provided all tha table have different id's but the same class name, so we find them
+    # In the report provided all the tables have different id's but the same class name, so we find them.
     tableusage = soup.find_all("table", class_="DiskUsage")
     for row in tableusage:
         cells = row.find_all("td")
 
-        # The split used here is the actual function created at the top of this script
-        # This for is only used to iterate over every list as this has created a list in list
+        # The split used here is the actual function created at the top of this script.
+        # This for is only used to iterate over every list as this has created a list in list.
         for data in list(split(cells, 5)):
             # print(data[4].text)
             if data[4].text.strip('%').isdigit() and float(data[4].text.strip('%')) >= 85:
